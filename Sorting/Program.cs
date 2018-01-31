@@ -124,6 +124,22 @@ namespace Sorting
             }
         }
 
+        //public static void insertionSort(int[] numbers)
+        //{
+        //    int j, key;
+        //    for (int i = 0; i < numbers.Length; i++)
+        //    {
+        //        key = numbers[i];
+        //        j = i - 1;
+        //        while (j >= 0 && key < numbers[j])
+        //        {
+        //            numbers[j + 1] = numbers[j];
+        //            j--;
+        //        }
+        //        numbers[j + 1] = key;
+        //    }
+        //}
+
         public static void insertionSort(int[] list)
         {
             for (int i = 1; i < list.Length; i++)
