@@ -18,5 +18,14 @@ namespace SortingTest
 
             Assert.That(Random1, Is.Ordered);
         }
+        [Test]
+        public void InsertionSortTest()
+        {
+            int[] Random1 = new int[10000];
+            Sorting.Program.arrayGenerate(Random1, 2);
+            Sorting.Program.insertionSort(Random1);
+
+            Assert.That(Random1, Is.Ordered);
+        }
     }
 }

@@ -14,25 +14,53 @@ namespace Sorting
 
         public static void Main(string[] args)
         {
-            int[] Random20 = new int[] { 12,7,19,3,15,18,9,5,16,4,11,13,2,10,1,6,20,8,14,17 };
-            int[] Random40 = new int[] { 31,19,39,2,21,16,34,12,5,15,27,33,18,9,3,23,24,7,38,26,4,32,40,11,35,28,13,22,10,1,29,25,6,20,30,8,36,14,17,37 };
-            int[] Random1 = new int[10000];
-            arrayGenerate(Random1, 2);
-            int[] Random2 = new int[20000];
-            arrayGenerate(Random2, 2);
+            int[] ssRandom1 = new int[10000];
+            arrayGenerate(ssRandom1, 2);
+            int[] ssRandom2 = new int[20000];
+            arrayGenerate(ssRandom2, 2);
+            int[] isRandom1 = new int[10000];
+            arrayGenerate(isRandom1, 2);
+            int[] isRandom2 = new int[20000];
+            arrayGenerate(isRandom2, 2);
+            int[] msRandom1 = new int[10000];
+            arrayGenerate(msRandom1, 2);
+            int[] msRandom2 = new int[20000];
+            arrayGenerate(msRandom2, 2);
+
             Stopwatch stopWatch = new Stopwatch();
 
             stopWatch.Start();
-            selectionSort(Random1);
+            selectionSort(ssRandom1);
             stopWatch.Stop();
-            showTiming("Selection Sort", Random1.Count(), stopWatch.Elapsed.TotalMilliseconds);
+            showTiming("Selection Sort", ssRandom1.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
             stopWatch.Start();
-            selectionSort(Random2);
+            selectionSort(ssRandom2);
             stopWatch.Stop();
-            showTiming("Selection Sort", Random2.Count(), stopWatch.Elapsed.TotalMilliseconds);
+            showTiming("Selection Sort", ssRandom2.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            //DisplayResults(Random1);
+            stopWatch.Start();
+            insertionSort(isRandom1);
+            stopWatch.Stop();
+            showTiming("Insertion Sort", isRandom1.Count(), stopWatch.Elapsed.TotalMilliseconds);
+
+            stopWatch.Start();
+            insertionSort(isRandom2);
+            stopWatch.Stop();
+            showTiming("Insertion Sort", isRandom2.Count(), stopWatch.Elapsed.TotalMilliseconds);
+
+            stopWatch.Start();
+            insertionSort(msRandom1);
+            stopWatch.Stop();
+            showTiming("Merge Sort", msRandom1.Count(), stopWatch.Elapsed.TotalMilliseconds);
+
+            stopWatch.Start();
+            insertionSort(msRandom2);
+            stopWatch.Stop();
+            showTiming("Merge Sort", msRandom2.Count(), stopWatch.Elapsed.TotalMilliseconds);
+
+            DisplayResults(isRandom1);
+            Console.ReadLine();
         }
 
         public static void showTiming(string name, int size, double time)
@@ -47,6 +75,14 @@ namespace Sorting
             for (int i = 0; i < data.Count(); i++)
             {
                 data[i] = r.Next();
+            }
+        }
+
+        public static void sortedGenerate(int[] data)
+        {
+            for (int i = 0; i < data.Count(); i++)
+            {
+                data[i] = i;
             }
         }
 
@@ -76,6 +112,23 @@ namespace Sorting
                 temp = a[i];
                 a[i] = a[min];
                 a[min] = temp;
+            }
+        }
+
+        public static void insertionSort(int[] a)
+        {
+            int j, key;
+            for (int i = 0; i < a.Length; i++)
+            {
+                key = a[i];
+                j = i - 1;
+                while (j >= 0 && key < a[j])
+                    //a[j] > key
+                {
+                    a[j + 1] = a[j];
+                    j--;
+                }
+                a[j + 1] = key;
             }
         }
     }
