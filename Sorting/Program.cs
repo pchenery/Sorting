@@ -17,17 +17,17 @@ namespace Sorting
             arrayGenerate(Random2, 2);
             int[] Sorted1 = new int[25000];
             sortedGenerate(Sorted1);
-            int[] Sorted2 = new int[75000];
+            int[] Sorted2 = new int[100000];
             sortedGenerate(Sorted2);
 
-            Stopwatch stopWatch = new Stopwatch();
+            var stopWatch = Stopwatch.StartNew();
 
-            stopWatch.Start();
+            //stopWatch.Start();
             selectionSort(Random1);
             stopWatch.Stop();
             showTiming("Selection Sort Random", Random1.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             selectionSort(Random2);
             stopWatch.Stop();
             showTiming("Selection Sort Random", Random2.Count(), stopWatch.Elapsed.TotalMilliseconds);
@@ -35,22 +35,22 @@ namespace Sorting
             arrayGenerate(Random1, 2);
             arrayGenerate(Random2, 2);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             insertionSort(Random1);
             stopWatch.Stop();
             showTiming("Insertion Sort Random", Random1.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             insertionSort(Random2);
             stopWatch.Stop();
             showTiming("Insertion Sort Random", Random2.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             insertionSort(Sorted1);
             stopWatch.Stop();
             showTiming("Insertion Sort Sorted", Sorted1.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             insertionSort(Sorted2);
             stopWatch.Stop();
             showTiming("Insertion Sort Sorted", Sorted2.Count(), stopWatch.Elapsed.TotalMilliseconds);
@@ -58,12 +58,12 @@ namespace Sorting
             arrayGenerate(Random1, 2);
             arrayGenerate(Random2, 2);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             mergeSort(Random1, 0, Random1.Length - 1);
             stopWatch.Stop();
             showTiming("Merge Sort Random", Random1.Count(), stopWatch.Elapsed.TotalMilliseconds);
 
-            stopWatch.Start();
+            stopWatch.Restart();
             mergeSort(Random2, 0, Random2.Length - 1);
             stopWatch.Stop();
             showTiming("Merge Sort Random", Random2.Count(), stopWatch.Elapsed.TotalMilliseconds);
@@ -124,19 +124,18 @@ namespace Sorting
             }
         }
 
-        public static void insertionSort(int[] numbers)
+        public static void insertionSort(int[] list)
         {
-            int j, key;
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 1; i < list.Length; i++)
             {
-                key = numbers[i];
-                j = i - 1;
-                while (j >= 0 && key < numbers[j])
+                if (list[i] < list[i - 1])
                 {
-                    numbers[j + 1] = numbers[j];
-                    j--;
+                    int temp = list[i];
+                    int j;
+                    for (j = i; j > 0 && list[j - 1] > temp; j--)
+                        list[j] = list[j - 1];
+                    list[j] = temp;
                 }
-                numbers[j + 1] = key;
             }
         }
 
