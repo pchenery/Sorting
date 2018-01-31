@@ -27,5 +27,14 @@ namespace SortingTest
 
             Assert.That(Random1, Is.Ordered);
         }
+        [Test]
+        public void MergeSortTest()
+        {
+            int[] Random1 = new int[10000];
+            Sorting.Program.arrayGenerate(Random1, 2);
+            Sorting.Program.mergeSort(Random1, 0, Random1.Length - 1);
+
+            Assert.That(Random1, Is.Ordered);
+        }
     }
 }
